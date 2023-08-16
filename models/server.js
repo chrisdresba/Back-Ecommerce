@@ -14,7 +14,7 @@ class Server {
       subcategories: "/api/subcategorias",
       products: "/api/productos",
       search: "/api/buscar",
-      users: "/api/usuarios",
+      users: "/api/usuario",
     };
 
     //Connect to DB
