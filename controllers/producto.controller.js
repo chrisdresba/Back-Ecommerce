@@ -8,7 +8,7 @@ const getProductos = async (req, res = response) => {
 
   const [total, productos] = await Promise.all([
     Producto.countDocuments(),
-    Producto.find().skip(Number(from)).limit(Number(limit)),
+    Producto.find().skip(Number(from)),
   ]);
 
   res.json(productos);
