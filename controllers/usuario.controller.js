@@ -11,7 +11,7 @@ const getUsuario = async (req = request, res = response) => {
       Usuario.find(query).skip(Number(from)),
     ]);
 
-    res.json({
+    return res.json({
       total,
       users,
     });
@@ -39,7 +39,7 @@ const postUsuario = async (req = request, res = response) => {
 
     await usuario.save();
 
-    res.json({
+    return res.json({
       usuario,
     });
   } catch (error) {

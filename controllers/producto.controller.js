@@ -10,7 +10,7 @@ const getProductos = async (req, res = response) => {
       Producto.find().skip(Number(from)),
     ]);
 
-    res.json(productos);
+    return res.json(productos);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ msg: "Error, contactar al administrador" });
@@ -24,7 +24,7 @@ const getProducto = async (req, res = response) => {
   try {
     const producto = await Producto.find(query);
 
-    res.json(producto);
+    return res.json(producto);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ msg: "Error, contactar al administrador" });

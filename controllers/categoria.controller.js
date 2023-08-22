@@ -10,7 +10,7 @@ const getCategorias = async (req, res = respone) => {
       Categoria.find(query).skip(Number(from)).limit(Number(limit)),
     ]);
 
-    res.json(categorias);
+    return res.json(categorias);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ msg: "Error, contactar al administrador" });
@@ -23,7 +23,7 @@ const getCategoria = async (req, res = response) => {
 
   try {
     const categoria = await Categoria.find(query);
-    res.json(categoria);
+    return res.json(categoria);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ msg: "Error, contactar al administrador" });

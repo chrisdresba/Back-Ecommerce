@@ -20,7 +20,7 @@ const search = async (req = request, res = response) => {
       nombre: regex,
     });
 
-    res.json(productos);
+    return res.json(productos);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ msg: "Error, contactar al administrador" });

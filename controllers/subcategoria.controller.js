@@ -10,7 +10,7 @@ const getSubcategorias = async (req, res = respone) => {
       Subcategoria.find(query).skip(Number(from)).limit(Number(limit)),
     ]);
 
-    res.json(subcategorias);
+    return res.json(subcategorias);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ msg: "Error, contactar al administrador" });
@@ -23,7 +23,7 @@ const getSubcategoria = async (req, res = response) => {
   try {
     const subcategoria = await Subcategoria.findOne(query);
 
-    res.json(subcategoria);
+    return res.json(subcategoria);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ msg: "Error, contactar al administrador" });
