@@ -4,23 +4,27 @@ const Producto = require("../models/producto");
 
 const search = async (req = request, res = response) => {
   const { termino } = req.params;
+  try {
+    const isMongoId = isValidObjectId(termino);
 
-  const isMongoId = isValidObjectId(termino);
+    if (isMongoId) {
+      const product = await Producto.findById(termino);
+      return res.json({
+        results: product ? [product] : [],
+      });
+    }
 
-  if (isMongoId) {
-    const product = await Producto.findById(termino);
-    return res.json({
-      results: product ? [product] : [],
+    const regex = new RegExp(termino, "i");
+
+    const productos = await Producto.find({
+      nombre: regex,
     });
+
+    res.json(productos);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ msg: "Error, contactar al administrador" });
   }
-
-  const regex = new RegExp(termino, "i");
-
-  const productos = await Producto.find({
-    nombre: regex,
-  });
-
-  res.json(productos);
 };
 
 module.exports = {

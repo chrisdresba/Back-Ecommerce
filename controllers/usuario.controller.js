@@ -3,40 +3,49 @@ const bcryptjs = require("bcryptjs");
 const Usuario = require("../models/usuario");
 
 const getUsuario = async (req = request, res = response) => {
-  const { limit = 5, from = 0 } = req.query;
+  const { from = 0 } = req.query;
   const query = { state: true };
+  try {
+    const [total, users] = await Promise.all([
+      Usuario.countDocuments(query),
+      Usuario.find(query).skip(Number(from)),
+    ]);
 
-  const [total, users] = await Promise.all([
-    Usuario.countDocuments(query),
-    Usuario.find(query).skip(Number(from)).limit(Number(limit)),
-  ]);
-
-  res.json({
-    total,
-    users,
-  });
+    res.json({
+      total,
+      users,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ msg: "Error, contactar al administrador" });
+  }
 };
 
 const postUsuario = async (req = request, res = response) => {
-  const { nombre, apellido, dni, telefono, email, contraseña } = req.body;
-  const usuario = new Usuario({
-    nombre,
-    apellido,
-    dni,
-    telefono,
-    email,
-    contraseña,
-  });
+  try {
+    const { nombre, apellido, dni, telefono, email, contraseña } = req.body;
+    const usuario = new Usuario({
+      nombre,
+      apellido,
+      dni,
+      telefono,
+      email,
+      contraseña,
+    });
 
-  // Encrypt password
-  const salt = bcryptjs.genSaltSync();
-  usuario.contraseña = bcryptjs.hashSync(contraseña, salt);
+    // Encrypt password
+    const salt = bcryptjs.genSaltSync();
+    usuario.contraseña = bcryptjs.hashSync(contraseña, salt);
 
-  await usuario.save();
+    await usuario.save();
 
-  res.json({
-    usuario,
-  });
+    res.json({
+      usuario,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ msg: "Error, contactar al administrador" });
+  }
 };
 
 module.exports = {

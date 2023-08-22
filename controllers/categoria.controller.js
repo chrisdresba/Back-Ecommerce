@@ -4,22 +4,30 @@ const Categoria = require("../models/categoria");
 const getCategorias = async (req, res = respone) => {
   const { limit = 30, from = 0 } = req.query;
   const query = { state: true };
+  try {
+    const [categorias] = await Promise.all([
+      Categoria.countDocuments(),
+      Categoria.find(query).skip(Number(from)).limit(Number(limit)),
+    ]);
 
-  const [total, categorias] = await Promise.all([
-    Categoria.countDocuments(),
-    Categoria.find().skip(Number(from)).limit(Number(limit)),
-  ]);
-
-  res.json(categorias);
+    res.json(categorias);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ msg: "Error, contactar al administrador" });
+  }
 };
 
 const getCategoria = async (req, res = response) => {
   const { id } = req.params;
   const query = { id: id };
 
-  const categoria = await Categoria.find({ id: 2 });
-
-  res.json(categoria);
+  try {
+    const categoria = await Categoria.find(query);
+    res.json(categoria);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ msg: "Error, contactar al administrador" });
+  }
 };
 
 module.exports = {
