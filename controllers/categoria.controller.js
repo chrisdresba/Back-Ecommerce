@@ -15,9 +15,9 @@ const getCategorias = async (req, res = respone) => {
 
 const getCategoria = async (req, res = response) => {
   const { id } = req.params;
-  const query = { _id: id };
+  const query = { id: id };
 
-  const categoria = await Categoria.find(query);
+  const categoria = await Categoria.find({ id: 2 });
 
   res.json(categoria);
 };

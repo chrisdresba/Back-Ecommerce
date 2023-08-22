@@ -16,7 +16,7 @@ const getProductos = async (req, res = response) => {
 
 const getProducto = async (req, res = response) => {
   const { id } = req.params;
-  const query = { _id: id };
+  const query = { id_producto: id };
 
   const producto = await Producto.find(query);
 

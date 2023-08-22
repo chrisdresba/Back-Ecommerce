@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="">
+    <link rel="stylesheet" href="css/style.css">
+    <title>API Ecommerce</title>
+</head>
+
+<body>
+    <div id="contenedor">
+        <div class="box-img">
+            <img src="assets/logo.png" alt="logo" srcset="">
+        </div>
+        <h1>API ECOMMERCE</h1>
+        <section>
+            <p>Bienvenido a la API JSON para E-commerce, diseñada para proporcionar acceso eficiente a la información
+                crucial de una tienda en línea desarrollada como un Desafío Front End.</p>
+            <p>Esta API permite interactuar con
+                productos, categorías, subcategorías
+                y usuarios, facilitando la gestión de una plataforma de comercio electrónico.</p>
+        </section>
+
+        <section>
+            <h2>PRODUCTOS</h2>
+            <p>Los productos son los elementos que se venden en la tienda en línea.</p>
+            <p>Se puede obtener el listado de todos los productos.</p>
+            <div class="box-item">
+                <span>GET</span>
+                <a
+                    href="https://node-mongo-ecommerce.onrender.com/api/productos">https://node-mongo-ecommerce.onrender.com/api/productos</a>
+            </div>
+            <div class="box-item">
+                <pre>
+{
+"_id": "64cd4cfea0816319d486e9d7",
+"destacado": 0,
+"nombre": "Mouse Logitech M100 Negro USB",
+"id_producto": 1912,
+"id_subcategoria": 2,
+"precio": 2140,
+"imagenes": [
+    {
+        "_id": "64dd7b1bf988f482ef6c5903",
+        "nombre": "9291_Mouse_Logitech_M100_Negro_USB_4dc57579",
+        "id_producto_imagen": 0
+    }
+],
+"orden": 0,
+"vendible": 1,
+"stock": 5,
+"garantia": 6,
+"iva": 10.5
+}
+                        </pre>
+            </div>
+            <p>Se pueden traer los productos por ID.</p>
+            <div class="box-item">
+                <span>GET</span>
+                <a
+                    href="https://node-mongo-ecommerce.onrender.com/api/productos/2723">https://node-mongo-ecommerce.onrender.com/api/productos/<strong>:id</strong></a>
+            </div>
+        </section>
+
+        <section>
+            <h2>CATEGORÍAS</h2>
+            <p>Se puede obtener el listado de todas las categorías.</p>
+            <div class="box-item">
+                <span>GET</span>
+                <a
+                    href="https://node-mongo-ecommerce.onrender.com/api/categorias">https://node-mongo-ecommerce.onrender.com/api/categorias</a>
+            </div>
+            <p>Se pueden traer las categorías por ID.</p>
+            <div class="box-item">
+                <span>GET</span>
+                <a
+                    href="https://node-mongo-ecommerce.onrender.com/api/categorias/2">https://node-mongo-ecommerce.onrender.com/api/categorias/<strong>:id</strong></a>
+            </div>
+        </section>
+
+        <section>
+            <h2>SUBCATEGORÍAS</h2>
+            <p>Se puede obtener el listado de todas las subcategorías.</p>
+            <div class="box-item">
+                <span>GET</span>
+                <a
+                    href="https://node-mongo-ecommerce.onrender.com/api/subcategorias">https://node-mongo-ecommerce.onrender.com/api/subcategorias</a>
+            </div>
+            <p>Se pueden traer los subcategorías por ID.</p>
+            <div class="box-item">
+                <span>GET</span>
+                <a
+                    href="https://node-mongo-ecommerce.onrender.com/api/subcategorias/5">https://node-mongo-ecommerce.onrender.com/api/subcategorias/<strong>:id</strong></a>
+            </div>
+        </section>
+
+        <section>
+            <h2>BUSCAR</h2>
+            <p>Se puede obtener un listado de productos que coincidan con el nombre-termino.</p>
+            <div class="box-item">
+                <span>GET</span>
+                <a
+                    href="https://node-mongo-ecommerce.onrender.com/api/buscar/mouse">https://node-mongo-ecommerce.onrender.com/api/buscar/<strong>:nombre</strong></a>
+            </div>
+        </section>
+
+        <section>
+            <h2>SESIÓN</h2>
+            <p>Se inicia sesión ingresando email y contraseña.</p>
+            <div class="box-item">
+                <span>GET</span>
+                <a
+                    href="https://node-mongo-ecommerce.onrender.com/api/auth/login">https://node-mongo-ecommerce.onrender.com/api/auth/login</a>
+            </div>
+            <div class="box-item">
+                <pre>
+{
+"email": "xxxxxx@xxxx.com",
+"contraseña": xxxxxxx
+}
+                        </pre>
+            </div>
+            <p>Se puede crear una cuenta ingresando los datos solicitados.</p>
+            <div class="box-item">
+                <span>POST</span>
+                <a href="">https://node-mongo-ecommerce.onrender.com/api/auth/</a>
+            </div>
+            <div class="box-item">
+                <pre>
+{
+"email": "xxxxxx@xxxx.com",
+"contraseña": xxxxxxx,
+"nombre": "xxxxxx",
+"apellido": "xxxxxx",
+"dni": 11111111,
+"telefono":"xxxxxxx",
+}
+                        </pre>
+        </section>
+    </div>
+    <footer>
+        <p>created by <a target="_blanck" href="https://github.com/chrisdresba">Cristian Barraza</a></p>
+        <p>Desafío Compra Gamer</p>
+    </footer>
+</body>
+
+</html>

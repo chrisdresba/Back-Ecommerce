@@ -13,11 +13,7 @@ router.get("/", getProductos);
 
 router.get(
   "/:id",
-  [
-    check("id", "No es un ID válido").isMongoId(),
-    check("id").custom(productExistsById),
-    validateFields,
-  ],
+  [check("id").custom(productExistsById), validateFields],
   getProducto
 );
 

@@ -15,11 +15,11 @@ const getSubcategorias = async (req, res = respone) => {
 
 const getSubcategoria = async (req, res = response) => {
   const { id } = req.params;
-  const query = { _id: id };
+  const query = { id: id };
 
-  const categoria = await Subcategoria.find(query);
+  const subcategoria = await Subcategoria.findOne(query);
 
-  res.json(categoria);
+  res.json(subcategoria);
 };
 
 module.exports = {

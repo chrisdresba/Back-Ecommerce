@@ -13,11 +13,7 @@ router.get("/", getCategorias);
 
 router.get(
   "/:id",
-  [
-    check("id", "No es un ID válido").isMongoId(),
-    check("id").custom(categoryExistsById),
-    validateFields,
-  ],
+
   getCategoria
 );
 

@@ -1,5 +1,6 @@
 const Categoria = require("../models/categoria");
 const Producto = require("../models/producto");
+const Subcategoria = require("../models/subcategoria");
 const Usuario = require("../models/usuario");
 
 const isValidRole = async (role = "") => {
@@ -24,14 +25,21 @@ const userExistsById = async (id) => {
 };
 
 const categoryExistsById = async (id) => {
-  const exist = await Categoria.findOne({ _id: id });
+  const exist = await Categoria.findOne({ id: id });
+  if (!exist) {
+    throw new Error(`El id no existe ${id}`);
+  }
+};
+
+const subcategoryExistsById = async (id) => {
+  const exist = await Subcategoria.findOne({ id: id });
   if (!exist) {
     throw new Error(`El id no existe ${id}`);
   }
 };
 
 const productExistsById = async (id) => {
-  const exist = await Producto.findOne({ _id: id });
+  const exist = await Producto.findOne({ id_producto: id });
   if (!exist) {
     throw new Error(`El id no existe ${id}`);
   }
@@ -50,6 +58,7 @@ module.exports = {
   existEmail,
   userExistsById,
   categoryExistsById,
+  subcategoryExistsById,
   productExistsById,
   validCollections,
 };

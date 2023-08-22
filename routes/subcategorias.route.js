@@ -5,6 +5,7 @@ const {
   getSubcategorias,
   getSubcategoria,
 } = require("../controllers/subcategoria.controller");
+const { subcategoryExistsById } = require("../helpers/db-validators");
 
 const router = Router();
 
@@ -12,7 +13,7 @@ router.get("/", getSubcategorias);
 
 router.get(
   "/:id",
-  [check("id", "No es un ID válido").isMongoId(), validateFields],
+  [check("id").custom(subcategoryExistsById), validateFields],
   getSubcategoria
 );
 
