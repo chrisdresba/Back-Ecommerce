@@ -6,7 +6,6 @@ const getSubcategorias = async (req, res = respone) => {
   const query = { state: true };
   try {
     const [subcategorias] = await Promise.all([
-      Subcategoria.countDocuments(),
       Subcategoria.find(query).skip(Number(from)).limit(Number(limit)),
     ]);
 

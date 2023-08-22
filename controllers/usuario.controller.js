@@ -7,7 +7,6 @@ const getUsuario = async (req = request, res = response) => {
   const query = { state: true };
   try {
     const [total, users] = await Promise.all([
-      Usuario.countDocuments(query),
       Usuario.find(query).skip(Number(from)),
     ]);
 

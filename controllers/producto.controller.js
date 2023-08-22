@@ -5,10 +5,7 @@ const { body } = require("express-validator");
 const getProductos = async (req, res = response) => {
   const { from = 0 } = req.query;
   try {
-    const [productos] = await Promise.all([
-      Producto.countDocuments(),
-      Producto.find().skip(Number(from)),
-    ]);
+    const [productos] = await Promise.all([Producto.find().skip(Number(from))]);
 
     return res.json(productos);
   } catch (error) {
