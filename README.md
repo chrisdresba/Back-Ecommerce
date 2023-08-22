@@ -18,6 +18,7 @@ Los productos son los elementos que se venden en la tienda en línea.
 - Endpoint: `/api/productos`
 
 Ejemplo de respuesta:
+
 `
 [
   {
@@ -92,6 +93,7 @@ Ejemplo de cuerpo de solicitud:
   "contraseña": "xxxxxxx"
 }
 `
+
 Crear una cuenta ingresando los datos solicitados
 
     Método: POST
