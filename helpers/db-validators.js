@@ -38,6 +38,15 @@ const subcategoryExistsById = async (id) => {
   }
 };
 
+const subcategoryExistsByName = async (nombre) => {
+  const exist = await Subcategoria.findOne({
+    nombre: { $regex: new RegExp("^" + nombre + "$", "i") },
+  });
+  if (!exist) {
+    throw new Error(`El nombre no existe ${nombre}`);
+  }
+};
+
 const productExistsById = async (id) => {
   const exist = await Producto.findOne({ id_producto: id });
   if (!exist) {
@@ -59,6 +68,7 @@ module.exports = {
   userExistsById,
   categoryExistsById,
   subcategoryExistsById,
+  subcategoryExistsByName,
   productExistsById,
   validCollections,
 };
